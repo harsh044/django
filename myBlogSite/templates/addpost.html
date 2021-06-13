@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if user.is_authenticated %}
+<div class="container my-4">
+	<div class="card">
+		<div class="card-body">
+			<h1 class="text-center"> Add Posts</h1><hr>
+			<div class="form-group">
+				<form method="post" enctype="multipart/form-data">{% csrf_token %}
+					{{form.media}}
+					{{form.as_p}}
+					<button type="submit" class="float-left btn btn-outline-primary px-5 mt-3">ADD
+					</button>
+				</form>
+			</div>
+		</div>
+		{% else %}
+		<h2 class="text-center">You are Not Allowed</h2>
+		{% endif%}
+	</div>
+</div>
+{% endblock %}

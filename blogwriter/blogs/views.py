@@ -34,7 +34,6 @@ class UpdatePost(UpdateView):
     model = Post
     form_class = UpdateForm
     template_name = 'update_post.html'
-    # fields = ('title', 'body')
     success_url = reverse_lazy('Post')
 
 

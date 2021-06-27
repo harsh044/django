@@ -1,22 +1,24 @@
-{% extends 'base.html' %}
-{% block content %}
-{% if user.is_authenticated %}
+{% extends 'base.html' %} {% block content %} {% if user.is_authenticated %}
 <div class="container my-4">
-	<div class="card">
-		<div class="card-body">
-			<h1 class="text-center"> Delete Post</h1>
-			<div class="container my-4">
-				<h2 class="text-center my-2">Title: {{ post.title }}</h2>
-				<div class="form-group text-center my-4">
-					<form method="post">{% csrf_token %}
-						<button class="btn btn-primary">Delete Post</button>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="card">
+    {% if user.id == post.author.id%}
+    <div class="card-body">
+      <h1 class="text-center">Delete Post</h1>
+      <div class="container my-4">
+        <h2 class="text-center my-2">Title: {{ post.title }}</h2>
+        <div class="form-group text-center my-4">
+          <form method="post">
+            {% csrf_token %}
+            <button class="btn btn-primary">Delete Post</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <h2 class="text-center">No Permission</h2>
+    {% endif%}
+  </div>
 </div>
 {% else %}
 <h2>You are Not Allowed</h2>
-{% endif%}
-{% endblock %}
+{% endif%} {% endblock %}

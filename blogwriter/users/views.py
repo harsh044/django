@@ -9,13 +9,13 @@ def Register(request):
     if request.user.is_authenticated:
         return redirect('home')
     else:
-        form = UserCreationForm()
+        form = signuuser()
         if request.method == "POST":
-            form = UserCreationForm(request.POST)
+            form = signuuser(request.POST)
             if form.is_valid():
                 form.save()
                 user = form.cleaned_data.get('username')
-                messages.success(request, "Account Has Been created" + user)
+                messages.success(request, "Account Has Been created-" + user)
                 return redirect('login')
 
         context = {'form': form}
@@ -36,7 +36,7 @@ def Login(request):
                 login(request, user)
                 return redirect('home')
             else:
-                messages.info(request, "Admin only")
+                messages.info(request, "Account does not exist")
 
         context = {}
         return render(request, 'login.html', context)

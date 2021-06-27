@@ -29,18 +29,20 @@
 					>Continue reading</a
 					>
 					{% if user.is_authenticated %}
-					<div class="mt-3">
-						<a
-								class="btn btn-outline-primary btn-sm"
-								role="button"
-								href="{% url 'update_post' post.pk %}"
-						>Edit</a>
-						<a
-								class="btn btn-outline-primary btn-sm"
-								role="button"
-								href="{% url 'delete_post' post.pk %}"
-						>Delete</a>
-					</div>
+					{% if user.id == post.author.id%}
+						<div class="mt-3">
+							<a
+									class="btn btn-outline-primary btn-sm"
+									role="button"
+									href="{% url 'update_post' post.pk %}"
+							>Edit</a>
+							<a
+									class="btn btn-outline-primary btn-sm"
+									role="button"
+									href="{% url 'delete_post' post.pk %}"
+							>Delete</a>
+						</div>
+					{% endif %}
 					{% endif %}
 				</div>
 			</div>

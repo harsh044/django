@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-{% comment %} #username=harshad, pass=12345678 {% endcomment %}
 
-<div class="container my-4 w-50 text-center" style="width: 200px;">
+<div class="container my-4 text-center">
 	<div class="card">
-		<div class="card-body">
+		<div class="card-body border border-dark">
 			{% for message in messages %}
 			<div class="alert alert-info" role="alert">
 				{{message}}

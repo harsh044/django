@@ -4,7 +4,7 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm,UpdateForm
 from django import forms
 from django.shortcuts import redirect, render
 from django.db.models import Q
@@ -32,8 +32,9 @@ class AddPostview(CreateView):
 
 class UpdatePost(UpdateView):
     model = Post
+    form_class = UpdateForm
     template_name = 'update_post.html'
-    fields = ('title', 'body')
+    # fields = ('title', 'body')
     success_url = reverse_lazy('Post')
 
 

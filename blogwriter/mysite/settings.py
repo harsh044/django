@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-%4oun*@x8hszh&mio*z@e_0*g^1=dwyq5g@8m^qz*f&$y7alm6'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,23 +42,20 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blogs',
     'users',
-    'ckeditor',
-    'crispy_forms',
 ]
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-# Username=Harshad, Password=Admin@123
-CKEDITOR_CONFIGS = {
-    'default': {
-        # 'toolbar': None,  # You can change this based on your requirements.
-        'width': 'auto',
 
-    },
-}
+
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         # 'toolbar': None,  # You can change this based on your requirements.
+#         'width': 'auto',
+
+#     },
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -132,8 +132,12 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
+STATIC_ROOT='/static/'
+
+MEDIA_ROOT = '/media/'
+
+MEDIA_URL = '/media/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),

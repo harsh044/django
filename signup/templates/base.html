@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Signp-Signin System</title>
+</head>
+<body>
+<div>
+	<nav>
+		<li><a href="{% url 'home' %}">Home</a></li>
+		{% if user.is_authenticated %}
+		<li>Hello,{{user.first_name}}</li>
+		<li><a href="{% url 'logout' %}">Logout</a></li>
+		{% else %}
+		<li><a href="{% url 'signup' %}">Signup</a></li>
+		<li><a href="{% url 'signin' %}">SignIn</a></li>
+		{% endif %}
+	</nav>
+</div>
+{% block content %}
+
+{% endblock%}
+</body>
+</html>

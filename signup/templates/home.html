@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Home Page</h1>
+<div>
+	{% for message in messages %}
+	<h3>{{message}}</h3>
+	{% endfor %}
+</div>
+{% endblock%}

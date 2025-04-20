@@ -57,9 +57,9 @@ font-family: 'Oswald', sans-serif;
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'add_post' %}">Add Post</a>
 				</li>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a class="nav-link" href="{% url 'logout' %}">LogOut</a>
-				</li>
+				</li> -->
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'home' %}">Hello-{{user}}</span></a>
 				</li>
@@ -84,6 +84,14 @@ font-family: 'Oswald', sans-serif;
 					Search
 				</button>
 			</form>
+			{% if user.is_authenticated %}
+			<form method="POST" action="{% url 'logout' %}" class="d-flex">
+				{% csrf_token %}
+				<button class="btn btn-outline-danger rounded-2 mx-3" type="submit">
+					LogOut
+				</button>
+			</form>
+			{% endif %}
 		</div>
 	</div>
 </nav>
